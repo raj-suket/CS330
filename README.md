@@ -15,4 +15,5 @@ Code works fine, only exception handling to be added.
 # Primefactors:
 Code works fine, only exception handling to be added.
 --
+Slight error when the number entered is prime.
 -----------------------------------------------------------
