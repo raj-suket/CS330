@@ -12,4 +12,7 @@ Currently the Outputs of the parent and child gets mixed.
 # Pipeline :
 Code works fine, only exception handling to be added.
 --
+# Primefactors:
+Code works fine, only exception handling to be added.
+--
 -----------------------------------------------------------
