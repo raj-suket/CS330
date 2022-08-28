@@ -1,0 +1,6 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/recurring/codes/CS330/assignment1/xv6-riscv'
+ 
+make: 'kernel/kernel' is up to date.
+make: Leaving directory '/home/recurring/codes/CS330/assignment1/xv6-riscv'
+ 
