@@ -27,10 +27,10 @@ int main(int argc, char* argv[]){
     pipe(fd);
     // we will use this pipe to store the number to transfer the end-result number
 
-    write(fd[1], &n, 1);
+    write(fd[1], &n, sizeof(int));
 
     while(1){
-        read(fd[0], &n, 1);
+        read(fd[0], &n, sizeof(int));
         if(n == 1) exit(0);
 
         int p = get_smallest_divisible_prime(n);
@@ -44,10 +44,13 @@ int main(int argc, char* argv[]){
             printf("%d, ", p);
         }
         printf("[%d]\n", getpid());
+        
+        close(fd[0]);
+        close(fd[1]);
 
         int rv = fork();
         if(rv == 0){
-            write(fd[1], &n, 1);
+            write(fd[1], &n, sizeof(int));
         }else{
             wait(0);
             exit(0);
