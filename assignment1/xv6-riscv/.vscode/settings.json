@@ -1,0 +1,8 @@
+{
+    "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
+    "files.associations": {
+        "types.h": "c",
+        "user.h": "c",
+        "limits": "c"
+    }
+}

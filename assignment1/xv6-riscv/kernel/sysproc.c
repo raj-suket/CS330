@@ -95,3 +95,22 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+uint64
+sys_getppid(void)
+{
+  return myproc()->parent->pid;
+}
+
+uint64
+sys_yield(void)
+{
+  yield();
+  return 0;
+}
+
+uint64 
+sys_getpa(void * A){
+  printf("pp %p\n", A);
+  return walkaddr(myproc()->pagetable, (uint64)A) + ((uint64)A & (PGSIZE - 1)) ;
+}
