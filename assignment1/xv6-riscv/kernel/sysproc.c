@@ -99,7 +99,7 @@ sys_uptime(void)
 uint64
 sys_getppid(void)
 {
-  return myproc()->parent->pid;
+  return getppid();
 }
 
 uint64
@@ -110,7 +110,60 @@ sys_yield(void)
 }
 
 uint64 
-sys_getpa(void * A){
-  printf("pp %p\n", A);
-  return walkaddr(myproc()->pagetable, (uint64)A) + ((uint64)A & (PGSIZE - 1)) ;
+sys_getpa(void){
+  uint64 A;
+  if(argaddr(0, &A) < 0){
+    return -1;
+  }
+  return getpa(A);
+}
+
+uint64
+sys_waitpid(void)
+{
+  int id;
+  uint64 p;
+  if(argint(0, &id) < 0){
+    return -1;
+  }
+  if(argaddr(1, &p) < 0){
+    return -1;
+  }
+  if(id==-1){
+    return wait(p);
+  }
+  return waitpid(id, p);
+}
+
+uint64
+sys_ps(void){
+  ps();
+  return 0;
+}
+
+uint64
+sys_pinfo(void){
+  int id;
+  uint64 p;
+  if(argint(0, &id) < 0){
+    return -1;
+  }
+  if(argaddr(1, &p) < 0){
+    return -1;
+  }
+  if(id==-1){
+    return pinfo(myproc()->pid, (uint64)p);
+  }
+  return pinfo(id, (uint64)p);
+}
+
+uint64
+sys_forkf(void){
+  uint64 p;
+  
+  if(argaddr(0, &p) < 0){
+    return -1;
+  }
+  // uint64 q(void) = *p();
+  return forkf(p);
 }
